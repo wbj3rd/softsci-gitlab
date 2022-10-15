@@ -1,0 +1,226 @@
+apiVersion: v1
+entries:
+  cert-manager:
+  - annotations:
+      artifacthub.io/prerelease: "false"
+    apiVersion: v1
+    appVersion: v1.5.4
+    created: "2022-10-14T20:38:08.7816158-04:00"
+    description: A Helm chart for cert-manager
+    digest: db580ba5c91a7f815b6e6fbbffe535fd5593239fc0206973503a7a20a61b0228
+    home: https://github.com/jetstack/cert-manager
+    icon: https://raw.githubusercontent.com/jetstack/cert-manager/master/logo/logo.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    maintainers:
+    - email: cert-manager-maintainers@googlegroups.com
+      name: cert-manager-maintainers
+    name: cert-manager
+    sources:
+    - https://github.com/jetstack/cert-manager
+    urls:
+    - charts/cert-manager-v1.5.4.tgz
+    version: v1.5.4
+  gitlab:
+  - apiVersion: v1
+    appVersion: master
+    created: "2022-10-14T20:38:08.77297-04:00"
+    dependencies:
+    - name: gitlab
+      repository: ""
+      version: '*.*.*'
+    - name: certmanager-issuer
+      repository: ""
+      version: '*.*.*'
+    - name: minio
+      repository: ""
+      version: '*.*.*'
+    - name: registry
+      repository: ""
+      version: '*.*.*'
+    - alias: certmanager
+      condition: certmanager.install
+      name: cert-manager
+      repository: https://charts.jetstack.io/
+      version: 1.5.4
+    - condition: prometheus.install
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 15.0.4
+    - condition: postgresql.install
+      name: postgresql
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 8.9.4
+    - condition: gitlab-runner.install
+      name: gitlab-runner
+      repository: https://charts.gitlab.io/
+      version: 0.45.0
+    - condition: global.grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 6.11.0
+    - condition: redis.install
+      name: redis
+      repository: https://raw.githubusercontent.com/bitnami/charts/eb5f9a9513d987b519f0ecd732e7031241c50328/bitnami
+      version: 11.3.4
+    - condition: nginx-ingress.enabled
+      name: nginx-ingress
+      repository: ""
+      version: '*.*.*'
+    description: The One DevOps Platform
+    digest: 4487aa548d501e0c6cc31f523801c8b924a69aae72f60590f7ee73c555c4d280
+    home: https://about.gitlab.com/
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    keywords:
+    - gitlab
+    maintainers:
+    - email: support@gitlab.com
+      name: GitLab Inc.
+    name: gitlab
+    sources:
+    - https://gitlab.com/gitlab-org/charts/gitlab
+    urls:
+    - gitlab-6.4.2.tgz
+    version: 6.4.2
+  gitlab-runner:
+  - apiVersion: v1
+    appVersion: 15.4.0
+    created: "2022-10-14T20:38:08.7832603-04:00"
+    description: GitLab Runner
+    digest: 641099dbc5ec354d621488dd5264f14e72fd8f0b219e3ca207acfd452d77ae23
+    icon: https://gitlab.com/uploads/-/system/project/avatar/250833/runner_logo.png
+    keywords:
+    - git
+    - ci
+    - deploy
+    maintainers:
+    - email: support@gitlab.com
+      name: GitLab Inc.
+    name: gitlab-runner
+    sources:
+    - https://gitlab.com/gitlab-org/gitlab-runner
+    - https://docs.gitlab.com/runner/
+    urls:
+    - charts/gitlab-runner-0.45.0.tgz
+    version: 0.45.0
+  grafana:
+  - apiVersion: v2
+    appVersion: 7.5.5
+    created: "2022-10-14T20:38:08.7858848-04:00"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: c9d4a318e6f90249845e38847f459115de04b1fe8a64c14e805b64f95973c61c
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - charts/grafana-6.11.0.tgz
+    version: 6.11.0
+  postgresql:
+  - apiVersion: v1
+    appVersion: 11.7.0
+    created: "2022-10-14T20:38:08.7886429-04:00"
+    description: Chart for PostgreSQL, an object-relational database management system
+      (ORDBMS) with an emphasis on extensibility and on standards-compliance.
+    digest: c424edca9d28a3080567ef6a26fd82346c61f42945213c202317ebffc17eb089
+    home: https://www.postgresql.org/
+    icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-110x117.png
+    keywords:
+    - postgresql
+    - postgres
+    - database
+    - sql
+    - replication
+    - cluster
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    name: postgresql
+    sources:
+    - https://github.com/bitnami/bitnami-docker-postgresql
+    urls:
+    - charts/postgresql-8.9.4.tgz
+    version: 8.9.4
+  prometheus:
+  - apiVersion: v2
+    appVersion: 2.31.1
+    created: "2022-10-14T20:38:08.7939862-04:00"
+    dependencies:
+    - condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 4.0.*
+    description: Prometheus is a monitoring system and time series database.
+    digest: 0f052e6c3917c43a9d7fc9a18210a732f942d43f1b0b89a97d892959a1f584ef
+    home: https://prometheus.io/
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    maintainers:
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: monotek23@gmail.com
+      name: monotek
+    - email: naseem@transit.app
+      name: naseemkullah
+    name: prometheus
+    sources:
+    - https://github.com/prometheus/alertmanager
+    - https://github.com/prometheus/prometheus
+    - https://github.com/prometheus/pushgateway
+    - https://github.com/prometheus/node_exporter
+    - https://github.com/kubernetes/kube-state-metrics
+    type: application
+    urls:
+    - charts/prometheus-15.0.4.tgz
+    version: 15.0.4
+  redis:
+  - annotations:
+      category: Database
+    apiVersion: v1
+    appVersion: 6.0.9
+    created: "2022-10-14T20:38:08.7974635-04:00"
+    description: Open source, advanced key-value store. It is often referred to as
+      a data structure server since keys can contain strings, hashes, lists, sets
+      and sorted sets.
+    digest: 8778c3bd3a3c2037ffe4c8ba71bdb87409100f28a238c7a73023a4216f0dfe8c
+    home: https://github.com/bitnami/charts/tree/master/bitnami/redis
+    icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    name: redis
+    sources:
+    - https://github.com/bitnami/bitnami-docker-redis
+    - http://redis.io/
+    urls:
+    - charts/redis-11.3.4.tgz
+    version: 11.3.4
+generated: "2022-10-14T20:38:08.7211668-04:00"
